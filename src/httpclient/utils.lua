@@ -1,25 +1,25 @@
-local inspect = require('inspect')
-local function deep_copy(t)
-  if type(t) ~= "table" then return t end
-  local meta = getmetatable(t)
-  local target = {}
-  for k, v in pairs(t) do
-    if type(v) == "table" then
-        target[k] = cloneTable(v)
-    else
-        target[k] = v
+local pt = require('pl.pretty')
+
+-- Deep copy function from the Wiki:
+-- http://lua-users.org/wiki/CopyTable.
+local function deep_copy(orig)
+  local orig_type = type(orig)
+  local copy
+  if orig_type == 'table' then
+    copy = {}
+    for orig_key, orig_value in next, orig, nil do
+      copy[deep_copy(orig_key)] = deep_copy(orig_value)
     end
+    -- The metatable is shared.
+    setmetatable(copy, getmetatable(orig))
+  else -- number, string, boolean, etc
+    copy = orig
   end
-  setmetatable(target, meta)
-  return target
+  return copy
 end
 
 local function print_table(t)
-  return inspect(t)
+  return pt.write(t)
 end
 
-utils = {
-  print_table = print_table,
-  deep_copy = deep_copy
-}
-return utils
+return { print_table = print_table, deep_copy = deep_copy }
