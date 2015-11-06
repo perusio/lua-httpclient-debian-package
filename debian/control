@@ -1,0 +1,21 @@
+Source: lua-httpclient
+Maintainer: António P. P. Almeida <appa@perusio.net> 
+Uploaders: António P. P. Almeida <appa@perusio.net>
+Section: interpreters
+Priority: optional
+Build-Depends: debhelper (>= 9),
+               dh-lua
+Standards-Version: 3.9.6
+Vcs-Browser: https://github.com/perusio/lua-httpclient
+Vcs-Git: git://git@github.com:perusio/lua-httpclient.git
+Homepage: https://github.com/perusio/lua-httpclient
+
+Package: lua-httpclient
+Architecture: all
+Depends: ${shlibs:Depends},
+         ${misc:Depends},
+         lua-socket (>= 3.0~rc1),
+         lua-penlight,
+         lua-sec (>= 0.5-1)
+Description: Simple HTTP client library that wraps luasocket and nginx
+ Lua location capture functionality.

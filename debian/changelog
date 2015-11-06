@@ -1,0 +1,6 @@
+lua-httpclient (0.1.0-6-perusio.1.0) UNRELEASED; urgency=medium
+
+  * Initial debian packaging.
+
+ -- António P. P. Almeida <appa@perusio.net>  Fri, 06 Nov 2015 03:34:28 +0100
+
